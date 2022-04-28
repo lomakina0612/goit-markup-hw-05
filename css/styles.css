@@ -617,21 +617,24 @@ a{
 
     background: rgba(0, 0, 0, 0.2);
 
-    transition: opacity var(--trans-duration) var(--trans-func);
+    opacity: 1;             /* default value */
+    visibility: visible;    /* default value */
+
+    transition: opacity var(--trans-duration) var(--trans-func),
+                visibility var(--trans-duration) var(--trans-func);
 }
 
 .backdrop.is-hidden{
     opacity: 0;
-    pointer-events: none;
-    
-    transition: opacity var(--trans-duration) var(--trans-func);
+    visibility: hidden;
+    pointer-events: none;    
 }
 
 .modal{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
 
     width: 528px;
     height: 581px;
@@ -641,6 +644,12 @@ a{
     0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
+
+    transition: transform var(--trans-duration) var(--trans-func);
+   }
+
+.backdrop.is-hidden .modal{
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 .close-btn{
